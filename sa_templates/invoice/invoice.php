@@ -38,14 +38,14 @@ do_action( 'pre_si_invoice_view' ); ?><!DOCTYPE html>
 			<div id="doc_header_wrap" class="sticky_header">
 				<header id="header_title">
 					
-					<span class="header_id"><?php printf( si__( 'Invoice %s' ), si_get_invoice_id() ) ?></span>
+					<span class="header_id"><?php printf( __( 'Invoice %s' , 'sprout-invoices' ), si_get_invoice_id() ) ?></span>
 					
 					<div id="doc_actions">
 
 						<?php do_action( 'si_doc_actions_pre' ) ?>
 
 						<?php
-							$payment_string = ( si_has_invoice_deposit() ) ? si__( 'Pay Deposit' ) : si__( 'Pay Invoice' );
+							$payment_string = ( si_has_invoice_deposit() ) ? __( 'Pay Deposit' , 'sprout-invoices' ) : __( 'Pay Invoice' , 'sprout-invoices' );
 								?>
 						<?php if ( si_get_invoice_balance() && si_get_invoice_status() != 'write-off' ) : ?>
 								
@@ -71,7 +71,7 @@ do_action( 'pre_si_invoice_view' ); ?><!DOCTYPE html>
 							
 							<header role="banner">
 								<div class="header_info">
-									<h2 class="doc_type"><?php si_e( 'Invoice' ) ?></h2>
+									<h2 class="doc_type"><?php _e( 'Invoice' , 'sprout-invoices' ) ?></h2>
 									<p class="title"><?php the_title() ?></p>
 								</div>
 
@@ -84,11 +84,11 @@ do_action( 'pre_si_invoice_view' ); ?><!DOCTYPE html>
 								</h1>	
 							</header><!-- /header -->
 							<?php if ( si_get_invoice_status() == 'write-off' ) : ?>
-								<span id="status" class="void"><span class="inner_status"><?php si_e( 'Void' ) ?></span></span>
-							<?php elseif ( ( si_get_invoice_balance() > 0.00 ) && ( si_get_invoice_balance() <= si_get_invoice_payments_total() ) ): ?>
-								<span id="status" class="void"><span class="inner_status"><?php si_e( 'Payment Pending' ) ?></span></span>
+								<span id="status" class="void"><span class="inner_status"><?php _e( 'Void' , 'sprout-invoices' ) ?></span></span>
+							<?php elseif ( ( si_get_invoice_balance() > 0.00 ) && ( si_get_invoice_balance() <= si_get_invoice_payments_total() ) ) : ?>
+								<span id="status" class="void"><span class="inner_status"><?php _e( 'Payment Pending' , 'sprout-invoices' ) ?></span></span>
 							<?php elseif ( ! si_get_invoice_balance() ) : ?>
-								<span id="status" class="paid"><span class="inner_status"><?php si_e( 'Paid' ) ?></span></span>
+								<span id="status" class="paid"><span class="inner_status"><?php _e( 'Paid' , 'sprout-invoices' ) ?></span></span>
 							<?php endif ?>
 						</div><!-- #header_logo -->
 
@@ -97,7 +97,7 @@ do_action( 'pre_si_invoice_view' ); ?><!DOCTYPE html>
 							<dl id="doc_address_info">
 								<dl class="from_addy">
 									<dt>
-										<span class="dt_heading"><?php si_e( 'From' ) ?></span>
+										<span class="dt_heading"><?php _e( 'From' , 'sprout-invoices' ) ?></span>
 									</dt>
 									<dd>
 										<b><?php si_company_name() ?></b> 
@@ -107,7 +107,7 @@ do_action( 'pre_si_invoice_view' ); ?><!DOCTYPE html>
 								<?php if ( si_get_invoice_client_id() ) : ?>
 									<dl class="client_addy">
 										<dt>
-											<span class="dt_heading"><?php si_e( 'To' ) ?></span>
+											<span class="dt_heading"><?php _e( 'To' , 'sprout-invoices' ) ?></span>
 										</dt>
 										<dd>
 											<b><?php echo get_the_title( si_get_invoice_client_id() ) ?></b>
@@ -126,27 +126,27 @@ do_action( 'pre_si_invoice_view' ); ?><!DOCTYPE html>
 							<?php do_action( 'si_document_details_pre' ) ?>
 
 							<dl class="date">
-								<dt><span class="dt_heading"><?php si_e( 'Date' ) ?></span></dt>
+								<dt><span class="dt_heading"><?php _e( 'Date' , 'sprout-invoices' ) ?></span></dt>
 								<dd><?php si_invoice_issue_date() ?></dd>
 							</dl>
 
 							<?php if ( si_get_invoice_id() ) : ?>
 								<dl class="invoice_number">
-									<dt><span class="dt_heading"><?php si_e( 'Invoice Number' ) ?></span></dt>
+									<dt><span class="dt_heading"><?php _e( 'Invoice Number' , 'sprout-invoices' ) ?></span></dt>
 									<dd><?php si_invoice_id() ?></dd>
 								</dl>
 							<?php endif ?>
 
 							<?php if ( si_get_invoice_po_number() ) : ?>
 								<dl class="invoice_po_number">
-									<dt><span class="dt_heading"><?php si_e( 'PO Number' ) ?></span></dt>
+									<dt><span class="dt_heading"><?php _e( 'PO Number' , 'sprout-invoices' ) ?></span></dt>
 									<dd><?php si_invoice_po_number() ?></dd>
 								</dl>
 							<?php endif ?>
 
 							<?php if ( si_get_invoice_due_date() ) : ?>
 								<dl class="date">
-									<dt><span class="dt_heading"><?php si_e( 'Invoice Due' ) ?></span></dt>
+									<dt><span class="dt_heading"><?php _e( 'Invoice Due' , 'sprout-invoices' ) ?></span></dt>
 									<dd><?php si_invoice_due_date() ?></dd>
 								</dl>
 							<?php endif ?>
@@ -155,23 +155,23 @@ do_action( 'pre_si_invoice_view' ); ?><!DOCTYPE html>
 
 							<?php if ( si_has_invoice_deposit() ) : ?>
 								<dl class="doc_total_with_deposit">
-									<dt><span class="dt_heading"><?php si_e( 'Invoice Total' ) ?></span></dt>
+									<dt><span class="dt_heading"><?php _e( 'Invoice Total' , 'sprout-invoices' ) ?></span></dt>
 									<dd><?php sa_formatted_money( si_get_invoice_total() ) ?></dd>
 								</dl>
 
 								<dl class="doc_total">
-									<dt><span class="dt_heading"><?php si_e( 'Deposit Total' ) ?></span></dt>
+									<dt><span class="dt_heading"><?php _e( 'Deposit Total' , 'sprout-invoices' ) ?></span></dt>
 									<dd><?php sa_formatted_money( si_get_invoice_deposit() ) ?></dd>
 								</dl>
 							<?php else : ?>
 								<dl class="doc_total">
-									<dt><span class="dt_heading"><?php si_e( 'Invoice Total' ) ?></span></dt>
+									<dt><span class="dt_heading"><?php _e( 'Invoice Total' , 'sprout-invoices' ) ?></span></dt>
 									<dd><?php sa_formatted_money( si_get_invoice_total() ) ?></dd>
 								</dl>
 							<?php endif ?>
 
 							<dl class="doc_total doc_balance">
-								<dt><span class="dt_heading"><?php si_e( 'Balance' ) ?></span></dt>
+								<dt><span class="dt_heading"><?php _e( 'Balance' , 'sprout-invoices' ) ?></span></dt>
 								<dd><?php sa_formatted_money( si_get_invoice_balance() ) ?></dd>
 							</dl>
 
@@ -194,7 +194,7 @@ do_action( 'pre_si_invoice_view' ); ?><!DOCTYPE html>
 						<?php if ( strlen( si_get_invoice_notes() ) > 1 ) : ?>
 						<?php do_action( 'si_document_notes' ) ?>
 						<div id="doc_notes">
-							<h2><?php si_e( 'Notes' ) ?></h2>
+							<h2><?php _e( 'Notes' , 'sprout-invoices' ) ?></h2>
 							<?php si_invoice_notes() ?>
 						</div><!-- #doc_notes -->
 						
@@ -203,7 +203,7 @@ do_action( 'pre_si_invoice_view' ); ?><!DOCTYPE html>
 						<?php if ( strlen( si_get_invoice_terms() ) > 1 ) : ?>
 						<?php do_action( 'si_document_terms' ) ?>
 						<div id="doc_terms">
-							<h2><?php si_e( 'Terms' ) ?></h2>
+							<h2><?php _e( 'Terms' , 'sprout-invoices' ) ?></h2>
 							<?php si_invoice_terms() ?>
 						</div><!-- #doc_terms -->
 						
@@ -243,7 +243,7 @@ do_action( 'pre_si_invoice_view' ); ?><!DOCTYPE html>
 					<?php if ( $data['status_type'] == SI_Notifications::RECORD ) : ?>
 						<p>
 							<?php echo esc_html( $update_title ) ?>
-							<br/><a href="#TB_inline?width=600&height=380&inlineId=notification_message_<?php echo (int) $item_id ?>" id="show_notification_tb_link_<?php echo (int) $item_id ?>" class="thickbox si_tooltip notification_message" title="<?php si_e( 'View Message' ) ?>"><?php si_e( 'View Message' ) ?></a>
+							<br/><a href="#TB_inline?width=600&height=380&inlineId=notification_message_<?php echo (int) $item_id ?>" id="show_notification_tb_link_<?php echo (int) $item_id ?>" class="thickbox si_tooltip notification_message" title="<?php _e( 'View Message' , 'sprout-invoices' ) ?>"><?php _e( 'View Message' , 'sprout-invoices' ) ?></a>
 						</p>
 						<div id="notification_message_<?php echo (int) $item_id ?>" class="cloak">
 							<?php echo wpautop( $data['content'] ) ?>
@@ -262,7 +262,7 @@ do_action( 'pre_si_invoice_view' ); ?><!DOCTYPE html>
 
 		<div id="footer_credit">
 			<?php do_action( 'si_document_footer_credit' ) ?>
-			<!--<p><?php si_e( 'Powered by Sprout Invoices' ) ?></p>-->
+			<!--<p><?php _e( 'Powered by Sprout Invoices' , 'sprout-invoices' ) ?></p>-->
 		</div><!-- #footer_messaging -->
 
 	</body>
