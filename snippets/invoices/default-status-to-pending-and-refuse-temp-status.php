@@ -1,6 +1,9 @@
 <?php // don't include this in your functions.php
 
 function maybe_change_invoice_status( $post_id ) {
+	if ( ! class_exists( 'SI_Invoice' ) ) {
+		return;
+	}
 	if ( SI_Invoice::POST_TYPE !== get_post_type( $post_id ) ) {
 		return;
 	}
