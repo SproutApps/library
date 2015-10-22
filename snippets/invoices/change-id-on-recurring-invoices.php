@@ -1,4 +1,4 @@
-<?php // don't include this in your functions.php
+<?php // don't include this line in your functions.php, it already has it.
 
 function maybe_change_invoice_id( $invoice_id = 0 ) {
 	if ( ! class_exists( 'SI_Invoices_Recurring' ) ) {
