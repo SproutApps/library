@@ -1,6 +1,6 @@
-<?php // don't include this line in your functions.php, it already has it.
+<?php // don't include this in your functions.php
 
-function maybe_change_invoice_id( $invoice_id = 0 ) {
+function maybe_change_invoice_id( $master_invoice_id = 0, $invoice_id = 0 ) {
 	if ( ! class_exists( 'SI_Invoices_Recurring' ) ) {
 		return;
 	}
@@ -11,6 +11,7 @@ function maybe_change_invoice_id( $invoice_id = 0 ) {
 
 	$invoice_id = $invoice->get_invoice_id();
 	$new_id = $invoice_id . '-' . $clone_count;
+
 	$invoice->set_invoice_id( $new_id );
 }
-add_action( 'si_recurring_invoice_created', 'maybe_change_invoice_id' );
+add_action( 'si_recurring_invoice_created', 'maybe_change_invoice_id', 10, 2 );
