@@ -1,0 +1,28 @@
+add_filter( 'manage_edit-sa_invoice_sortable_columns', '_register_sortable_columns_for_invoices', 10, 2 );
+add_filter( 'manage_edit-sa_estimate_sortable_columns', '_register_sortable_columns_for_estimate', 10, 2 );
+add_action( 'pre_get_posts', 'wpperform_custom_orderby' );
+
+
+function _register_sortable_columns_for_invoices( $columns ) {
+$columns['status'] = 'post_status';
+$columns['client'] = 'client';
+return $columns;
+}
+
+function _register_sortable_columns_for_estimate( $columns ) {
+$columns['status'] = 'post_status';
+$columns['client'] = 'client';
+return $columns;
+}
+
+
+function wpperform_custom_orderby( $query ) {
+if( ! is_admin() )
+return;
+
+$orderby = $query->get( 'orderby');
+if( 'client' == $orderby ) {
+$query->set( 'meta_key', '_client_id' );
+$query->set( 'orderby', 'meta_value_num' );
+}
+}
