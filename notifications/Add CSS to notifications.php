@@ -1,4 +1,4 @@
-<?php
+<?php  // don't include this line in your functions.php, since it already starts with it.
 
 /**
  * Hook into shortcode_line_item_table hook and add custom CSS.
